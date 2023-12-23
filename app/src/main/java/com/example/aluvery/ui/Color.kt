@@ -1,4 +1,4 @@
-package com.example.aluvery.ui.theme
+package com.example.aluvery.ui
 
 import androidx.compose.ui.graphics.Color
 
