@@ -1,17 +1,16 @@
 package com.example.aluvery
 
 import android.os.Bundle
-import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
@@ -19,24 +18,16 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.BasicText
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Alignment.Companion.CenterHorizontally
-import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Alignment.Companion.TopCenter
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.layout.AlignmentLine
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -54,7 +45,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             AluveryTheme {
                 Surface {
-                    ProductItem()
+                    ProductSection()
                 }
             }
         }
@@ -66,8 +57,7 @@ fun ProductItem() {
     Surface(
             modifier = Modifier.padding(8.dp),
             shape = RoundedCornerShape(size = 15.dp),
-            tonalElevation = 16.dp,
-            shadowElevation = 4.dp
+            shadowElevation = 10.dp
     ) {
         Column(
                 modifier = Modifier
@@ -91,7 +81,7 @@ fun ProductItem() {
                         contentDescription = null,
                         modifier = Modifier
                                 .size(size = imageSize)
-                                .offset(y = imageSize/2)
+                                .offset(y = imageSize / 2)
                                 .clip(shape = CircleShape)
                                 .align(alignment = TopCenter)
                 )
@@ -117,8 +107,33 @@ fun ProductItem() {
     }
 }
 
+@Composable
+fun ProductSection() {
+    Column {
+        Text(
+                text = "Promoções",
+                modifier = Modifier.padding(start = 16.dp, top = 16.dp, end = 16.dp),
+                fontSize = 20.sp,
+                fontWeight = FontWeight(400)
+        )
+
+        Row(
+                modifier = Modifier
+                        .padding(top = 8.dp, bottom = 16.dp)
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp)
+                        .horizontalScroll(rememberScrollState()),
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            ProductItem()
+            ProductItem()
+            ProductItem()
+        }
+    }
+}
+
 @Preview(showBackground = true, name = "product_item", showSystemUi = false)
 @Composable
 fun ProductItemPreview() {
-    ProductItem()
+    ProductSection()
 }
