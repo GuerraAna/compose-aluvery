@@ -1,5 +1,4 @@
-Aluvery
-App de entrega de comidas e bebidas em geral.
+Aluvery - App de entrega de comidas e bebidas em geral.
 
 🔨 Funcionalidades do projeto
 O Aluvery apresenta um catálogo de produtos variados como comidas, doces, bebidas etc
@@ -9,16 +8,17 @@ O Aluvery apresenta um catálogo de produtos variados como comidas, doces, bebid
 ✔️ Técnicas e tecnologias utilizadas
 Para a implementação do projeto foram utilizadas as seguintes técnicas:
 
-Jetpack Compose
-Kotlin
-Activity
-Composables
-Layout (Column, Row e Box)
-Image
-Text
-Modifier
-Separação de componentes e telas
-Reutilização de composables
+.Jetpack Compose
+.Kotlin
+.Activity
+.Composables
+.Layout (Column, Row e Box)
+.Image
+.Text
+.Modifier
+.Separação de componentes e telas
+.Reutilização de composables
+
 📁 Acesso ao projeto
 Você pode acessar o código fonte do projeto ou baixá-lo.
 
