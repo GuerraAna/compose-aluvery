@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.aluvery.sampleData.sampleProducts
 import com.example.aluvery.ui.Purple700
-import com.example.aluvery.ui.components.ProductSection
+import com.example.aluvery.ui.components.section.ProductSection
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
