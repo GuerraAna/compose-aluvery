@@ -27,7 +27,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.aluvery.sampleData.sampleProducts
+import com.example.aluvery.sampleData.sampleStores
 import com.example.aluvery.ui.Purple700
+import com.example.aluvery.ui.components.section.PartnerStoresSection
 import com.example.aluvery.ui.components.section.ProductSection
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -46,9 +48,10 @@ fun HomeScreen() {
                         .verticalScroll(rememberScrollState())
 
                 ) {
-                    ProductSection(title = "Promoções", products = sampleProducts)
-                    ProductSection(title = "Doces", products = sampleProducts)
-                    ProductSection(title = "Bebidas", products = sampleProducts)
+                   ProductSection(title = "Promoções", products = sampleProducts)
+                   ProductSection(title = "Doces", products = sampleProducts)
+                   ProductSection(title = "Bebidas", products = sampleProducts)
+                   PartnerStoresSection(title = "Lojas Parceiras", stores = sampleStores)
                 }
             }
         }

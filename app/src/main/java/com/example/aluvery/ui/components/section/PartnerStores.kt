@@ -13,14 +13,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.aluvery.model.Product
-import com.example.aluvery.sampleData.sampleProducts
-import com.example.aluvery.ui.components.ProductItem
+import com.example.aluvery.model.Store
+import com.example.aluvery.sampleData.sampleStores
+import com.example.aluvery.ui.components.StoreItem
 
 @Composable
-fun ProductSection(
+fun PartnerStoresSection(
     title: String,
-    products: List<Product>,
+    stores: List<Store>,
     modifier: Modifier = Modifier
 ) {
     Section(
@@ -33,28 +33,28 @@ fun ProductSection(
             )
                 },
         content = {
-            Row(
-                modifier = Modifier
-                    .padding(top = 8.dp, bottom = 16.dp)
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
-                    .horizontalScroll(rememberScrollState()),
-                horizontalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                for (product in products) {
-                    ProductItem(product = product)
-                }
-            }
-                   },
+                  Row(
+                      modifier = Modifier
+                          .padding(top = 16.dp, bottom = 16.dp)
+                          .fillMaxWidth()
+                          .padding(horizontal = 16.dp)
+                          .horizontalScroll(rememberScrollState()),
+                      horizontalArrangement = Arrangement.spacedBy(16.dp)
+                  ) {
+                      for (store in stores) {
+                          StoreItem(store = store)
+                      }
+                  }
+        },
         modifier = modifier
     )
 }
 
 @Preview(showBackground = true)
 @Composable
-fun ProductSectionPreview() {
-    ProductSection(
-        title = "Teste",
-        products = sampleProducts
+fun PartnerStoresSectionPreview() {
+    PartnerStoresSection(
+        title = "Lojas Parceiras",
+        stores = sampleStores
     )
 }
