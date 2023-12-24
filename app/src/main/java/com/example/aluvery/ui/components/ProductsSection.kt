@@ -19,10 +19,13 @@ import com.example.aluvery.model.Product
 import java.math.BigDecimal
 
 @Composable
-fun ProductSection() {
+fun ProductSection(
+    title: String,
+    products: List<Product>
+) {
     Column {
         Text(
-            text = "Promoções",
+            text = title,
             modifier = Modifier.padding(start = 16.dp, top = 16.dp, end = 16.dp),
             fontSize = 20.sp,
             fontWeight = FontWeight(400)
@@ -36,27 +39,9 @@ fun ProductSection() {
                 .horizontalScroll(rememberScrollState()),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            ProductItem(
-                Product(
-                    name = "Hamburguer",
-                    price = BigDecimal(36.90),
-                    imageView = R.drawable.burger
-                )
-            )
-            ProductItem(
-                Product(
-                    name = "Pizza",
-                    price = BigDecimal(80),
-                    imageView = R.drawable.pizza
-                )
-            )
-            ProductItem(
-                Product(
-                    name = "Batata frita",
-                    price = BigDecimal(15),
-                    imageView = R.drawable.fries
-                )
-            )
+            for (product in products) {
+                ProductItem(product = product)
+            }
         }
     }
 }
@@ -64,5 +49,14 @@ fun ProductSection() {
 @Preview(showBackground = true)
 @Composable
 fun ProductSectionPreview() {
-    ProductSection()
+    ProductSection(
+        title = "Teste",
+        products = listOf(
+            Product(
+                name = "Produto",
+                price = BigDecimal(10),
+                imageView = R.drawable.ic_launcher_background
+            )
+        )
+    )
 }
