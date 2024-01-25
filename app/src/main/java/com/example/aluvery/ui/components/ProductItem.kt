@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,13 +27,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.aluvery.R
 import com.example.aluvery.extensions.toBrazilianCurrency
 import com.example.aluvery.model.Product
-import com.example.aluvery.ui.Purple500
-import com.example.aluvery.ui.Teal200
 import java.math.BigDecimal
 
 @Composable
@@ -55,12 +55,15 @@ fun ProductItem(product: Product) {
                     .fillMaxWidth()
                     .background(
                         brush = Brush.horizontalGradient(
-                            colors = listOf(Purple500, Teal200)
+                            colors = listOf(
+                                MaterialTheme.colorScheme.primary,
+                                MaterialTheme.colorScheme.secondary
+                            )
                         )
                     )
             ) {
                 Image(
-                    painter = painterResource(product.imageView),
+                    painter = painterResource(id = R.drawable.burger),
                     contentDescription = null,
                     modifier = Modifier
                         .size(size = imageSize)
@@ -96,9 +99,8 @@ fun ProductItem(product: Product) {
 fun ProductItemPreview() {
     ProductItem(
         Product(
-            name = "Teste",
-            price = BigDecimal(10),
-            imageView = R.drawable.ic_launcher_background
+            name = LoremIpsum(50).values.first(),
+            price = BigDecimal("14.99")
         )
     )
 }

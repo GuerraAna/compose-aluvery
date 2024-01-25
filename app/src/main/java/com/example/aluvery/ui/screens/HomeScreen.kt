@@ -26,15 +26,17 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.aluvery.sampleData.sampleProducts
-import com.example.aluvery.sampleData.sampleStores
+import com.example.aluvery.model.Product
+import com.example.aluvery.sampleData.sampleSections
+import com.example.aluvery.ui.AluveryTheme
 import com.example.aluvery.ui.Purple700
-import com.example.aluvery.ui.components.section.PartnerStoresSection
 import com.example.aluvery.ui.components.section.ProductSection
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    sections: Map<String, List<Product>>
+) {
     Scaffold(
         topBar = { ScaffoldTopBar() }
     ) {
@@ -48,10 +50,19 @@ fun HomeScreen() {
                         .verticalScroll(rememberScrollState())
 
                 ) {
-                   ProductSection(title = "Promoções", products = sampleProducts)
+                  /* ProductSection(title = "Promoções", products = sampleProducts)
                    ProductSection(title = "Doces", products = sampleProducts)
                    ProductSection(title = "Bebidas", products = sampleProducts)
-                   PartnerStoresSection(title = "Lojas Parceiras", stores = sampleStores)
+                   PartnerStoresSection(title = "Lojas Parceiras", stores = sampleStores)*/
+                    for (section in sections) {
+                        val title = section.key
+                        val products = section.value
+
+                        ProductSection(
+                            title = title,
+                            products = products
+                        )
+                    }
                 }
             }
         }
@@ -92,5 +103,9 @@ fun ScaffoldTopBar() {
 @Preview(showBackground = true, name = "product_item", showSystemUi = true)
 @Composable
 fun HomeScreenPreview() {
-    HomeScreen()
+    AluveryTheme {
+        Surface {
+            HomeScreen(sampleSections)
+        }
+    }
 }
