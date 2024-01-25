@@ -1,6 +1,5 @@
 package com.example.aluvery.ui.components
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -30,6 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import com.example.aluvery.R
 import com.example.aluvery.extensions.toBrazilianCurrency
 import com.example.aluvery.model.Product
@@ -62,15 +62,16 @@ fun ProductItem(product: Product) {
                         )
                     )
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.burger),
+                AsyncImage(
+                    model = product.image,
                     contentDescription = null,
                     modifier = Modifier
                         .size(size = imageSize)
                         .offset(y = imageSize / 2)
                         .clip(shape = CircleShape)
                         .align(alignment = Alignment.BottomCenter),
-                    contentScale = ContentScale.Crop
+                    contentScale = ContentScale.Crop,
+                    placeholder = painterResource(id = R.drawable.burger)
                 )
             }
             Spacer(modifier = Modifier.height(imageSize/2))
