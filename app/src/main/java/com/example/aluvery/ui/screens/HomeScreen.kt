@@ -79,7 +79,7 @@ fun HomeScreen(
                                 contentDescription = "buscar"
                             ) },
                             label = { Text(text = "Produto")},
-                            placeholder = { Text("O que voc^e procura?") }
+                            placeholder = { Text("O que você procura?") }
                         )
 
                         for (section in sections) {
