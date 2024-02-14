@@ -46,7 +46,8 @@ import com.example.aluvery.ui.components.section.ProductSection
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    sections: Map<String, List<Product>>
+    sections: Map<String, List<Product>>,
+    searchText: String = ""
 ) {
     Scaffold(
         topBar = { ScaffoldTopBar() }
@@ -54,15 +55,16 @@ fun HomeScreen(
         Box(
             modifier = Modifier.padding(it)
         ) {
+            var text by remember { mutableStateOf(searchText) }
+
             Surface {
                 LazyColumn(
                     modifier = Modifier.fillMaxSize(),
                     verticalArrangement = Arrangement.spacedBy(16.dp),
                     contentPadding = PaddingValues(vertical = 16.dp)
                 ) {
-                    item {
-                        var text by remember { mutableStateOf("") }
 
+                    item {
                         OutlinedTextField(
                             value = text,
                             onValueChange = { newValue ->
@@ -85,28 +87,34 @@ fun HomeScreen(
                         )
                     }
 
-                    items(sampleProducts) { product ->
-                        for (p in product) {
-                            CardProductItem(
-                                product = p,
-                                modifier = Modifier.padding(horizontal = 16.dp, vertical = 16.dp)
-                            )
-                        }
-                    }
+                    when (text.isBlank()) {
+                        true -> {
+                            item {
+                                for (section in sections) {
+                                    val title = section.key
+                                    val products = section.value
 
-                    item {
-                        for (section in sections) {
-                            val title = section.key
-                            val products = section.value
+                                    ProductSection(
+                                        title = title,
+                                        products = products
+                                    )
+                                }
 
-                            ProductSection(
-                                title = title,
-                                products = products
-                            )
+                                PartnerStoresSection(title = "Lojas Parceiras", stores = sampleStores)
+
+                            }
                         }
 
-                        PartnerStoresSection(title = "Lojas Parceiras", stores = sampleStores)
-
+                        else -> {
+                            items(sampleProducts) { product ->
+                                for (p in product) {
+                                    CardProductItem(
+                                        product = p,
+                                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 16.dp)
+                                    )
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -151,6 +159,16 @@ fun HomeScreenPreview() {
     AluveryTheme {
         Surface {
             HomeScreen(sections = sampleSections)
+        }
+    }
+}
+
+@Preview(showBackground = true, name = "product_item_searched", showSystemUi = true)
+@Composable
+fun HomeScreenWithSearchedTextPreview() {
+    AluveryTheme {
+        Surface {
+            HomeScreen(sections = sampleSections, searchText = "Teste do texto digitado")
         }
     }
 }
