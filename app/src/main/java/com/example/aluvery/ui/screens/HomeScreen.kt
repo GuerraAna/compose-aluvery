@@ -49,13 +49,23 @@ fun HomeScreen(
     sections: Map<String, List<Product>>,
     searchText: String = ""
 ) {
+    var text by remember { mutableStateOf(searchText) }
+
+    val searchedProducts = remember(text) {
+        if (text.isNotBlank()) {
+            sampleProducts.filter { product ->
+                product.name.contains(text, ignoreCase = true) ||
+                        product.description?.contains(text, ignoreCase = true) ?: false
+            }
+        } else emptyList()
+    }
+
     Scaffold(
         topBar = { ScaffoldTopBar() }
     ) {
         Box(
             modifier = Modifier.padding(it)
         ) {
-            var text by remember { mutableStateOf(searchText) }
 
             Surface {
                 LazyColumn(
@@ -106,13 +116,11 @@ fun HomeScreen(
                         }
 
                         else -> {
-                            items(sampleProducts) { product ->
-                                for (p in product) {
-                                    CardProductItem(
-                                        product = p,
-                                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 16.dp)
-                                    )
-                                }
+                            items(searchedProducts) { product ->
+                                CardProductItem(
+                                    product = product,
+                                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 16.dp)
+                                )
                             }
                         }
                     }
@@ -168,7 +176,7 @@ fun HomeScreenPreview() {
 fun HomeScreenWithSearchedTextPreview() {
     AluveryTheme {
         Surface {
-            HomeScreen(sections = sampleSections, searchText = "Teste do texto digitado")
+            HomeScreen(sections = sampleSections, searchText = "as")
         }
     }
 }
