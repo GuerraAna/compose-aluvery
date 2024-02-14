@@ -9,22 +9,16 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.rounded.ExitToApp
 import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -33,12 +27,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.aluvery.model.Product
+import com.example.aluvery.sampleData.sampleProducts
 import com.example.aluvery.sampleData.sampleSections
-import com.example.aluvery.sampleData.sampleStores
 import com.example.aluvery.ui.AluveryTheme
 import com.example.aluvery.ui.Purple700
-import com.example.aluvery.ui.components.section.PartnerStoresSection
-import com.example.aluvery.ui.components.section.ProductSection
+import com.example.aluvery.ui.components.CardProductItem
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -57,43 +50,47 @@ fun HomeScreen(
                     verticalArrangement = Arrangement.spacedBy(16.dp),
                     contentPadding = PaddingValues(vertical = 16.dp)
                 ) {
-                    item {
-                        var text by remember { mutableStateOf("") }
-
-                        OutlinedTextField(
-                            value = text,
-                            onValueChange = { newValue ->
-                                text = newValue
-                            },
-                            modifier =
-                                Modifier
-                                    .padding(
-                                        start = 16.dp,
-                                        top = 16.dp,
-                                        end = 16.dp
-                                    )
-                                    .fillMaxWidth(),
-                            shape = RoundedCornerShape(100),
-                            leadingIcon =  { Icon(
-                                imageVector = Icons.Default.Search,
-                                contentDescription = "buscar"
-                            ) },
-                            label = { Text(text = "Produto")},
-                            placeholder = { Text("O que você procura?") }
-                        )
-
-                        for (section in sections) {
-                            val title = section.key
-                            val products = section.value
-
-                            ProductSection(
-                                title = title,
-                                products = products
-                            )
-                        }
-
-                        PartnerStoresSection(title = "Lojas Parceiras", stores = sampleStores)
+                    items(sampleProducts) { product ->
+                        CardProductItem(product = product)
                     }
+
+//                    item {
+//                        var text by remember { mutableStateOf("") }
+//
+//                        OutlinedTextField(
+//                            value = text,
+//                            onValueChange = { newValue ->
+//                                text = newValue
+//                            },
+//                            modifier =
+//                                Modifier
+//                                    .padding(
+//                                        start = 16.dp,
+//                                        top = 16.dp,
+//                                        end = 16.dp
+//                                    )
+//                                    .fillMaxWidth(),
+//                            shape = RoundedCornerShape(100),
+//                            leadingIcon =  { Icon(
+//                                imageVector = Icons.Default.Search,
+//                                contentDescription = "buscar"
+//                            ) },
+//                            label = { Text(text = "Produto")},
+//                            placeholder = { Text("O que você procura?") }
+//                        )
+//
+//                        for (section in sections) {
+//                            val title = section.key
+//                            val products = section.value
+//
+//                            ProductSection(
+//                                title = title,
+//                                products = products
+//                            )
+//                        }
+//
+//                        PartnerStoresSection(title = "Lojas Parceiras", stores = sampleStores)
+//                    }
                 }
             }
         }
