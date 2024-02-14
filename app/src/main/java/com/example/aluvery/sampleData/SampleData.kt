@@ -30,7 +30,7 @@ val sampleDrinks = listOf(
         image = "https://images.pexels.com/photos/1552630/pexels-photo-1552630.jpeg",
     ),
     Product(
-        name = "Refrigerante",
+        name = "Vinho",
         price = BigDecimal("4.99"),
         image = "https://images.pexels.com/photos/2775860/pexels-photo-2775860.jpeg"
     ),
@@ -48,9 +48,9 @@ val sampleDrinks = listOf(
 
 val sampleProducts: List<Product> = listOf(
     Product(
-        name = "Hamburguer",
+        name = "Lasanha de berinjela",
         price = BigDecimal("12.99"),
-        image = "https://images.pexels.com/photos/1639557/pexels-photo-1639557.jpeg"
+        image = "https://i1.wp.com/biosom.com.br/blog/wp-content/uploads/2015/06/lasanha-de-berinjela.jpg?fit=3264%2C2448&ssl=1"
     ),
     Product(
         name = "Pizza",
@@ -58,28 +58,28 @@ val sampleProducts: List<Product> = listOf(
         image = "https://images.pexels.com/photos/825661/pexels-photo-825661.jpeg"
     ),
     Product(
-        name = "Batata frita",
+        name = "Batata rústica",
         price = BigDecimal("7.99"),
         image = "https://images.pexels.com/photos/1583884/pexels-photo-1583884.jpeg"
-    ), *sampleDrinks.toTypedArray(), *sampleCandies.toTypedArray()
+    )
 )
 
 val sampleStores = listOf(
     Store(
         name = "Floricultura",
-        imageView = R.drawable.pizza
+        imageView = R.drawable.flower_shop
     ),
     Store(
         name = "Loja de roupas",
-        imageView = R.drawable.pizza
+        imageView = R.drawable.clothing_store
     ),
     Store(
         name = "Papelaria",
-        imageView = R.drawable.pizza
+        imageView = R.drawable.stationery_store
     ),
     Store(
         name = "Hoteis",
-        imageView = R.drawable.pizza
+        imageView = R.drawable.hotel_store
     )
 )
 
