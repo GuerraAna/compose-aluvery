@@ -17,8 +17,10 @@ import com.example.aluvery.R
 import com.example.aluvery.model.Store
 
 @Composable
-fun StoreItem(store: Store) {
-    Surface {
+fun StoreItem(store: Store, modifier: Modifier = Modifier) {
+    Surface(
+        modifier = modifier
+    ) {
         val imageSize = 100.dp
 
         Column {

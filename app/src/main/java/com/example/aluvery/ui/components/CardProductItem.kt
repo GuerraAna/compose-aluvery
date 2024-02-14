@@ -7,11 +7,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -25,10 +25,11 @@ import com.example.aluvery.ui.AluveryTheme
 
 @Composable
 fun CardProductItem(
-    product: Product
+    product: Product,
+    modifier: Modifier = Modifier
 ) {
     Card(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .heightIn(150.dp)
     ) {
@@ -36,25 +37,22 @@ fun CardProductItem(
             AsyncImage(
                 model = product.image,
                 contentDescription = null,
-                Modifier
+                modifier = Modifier
                     .fillMaxWidth()
                     .height(100.dp),
                 placeholder = painterResource(id = R.drawable.ic_launcher_background),
                 contentScale = ContentScale.Crop
             )
             Column(
-                Modifier
+                modifier = Modifier
                     .fillMaxWidth()
-                    .background(MaterialTheme.colorScheme.primary)
+                    .background(color = Color.Yellow)
                     .padding(16.dp)
             ) {
-                Text(
-                    text = product.name
-                )
-                Text(
-                    text = product.price.toBrazilianCurrency()
-                )
+                Text(text = product.name)
+                Text(text = product.price.toBrazilianCurrency())
             }
+
             // TODO: adicionar descrição do produto
             // Text(
             //     text = product.description,
@@ -71,7 +69,8 @@ private fun CardProductItemPreview() {
     AluveryTheme {
         Surface {
             CardProductItem(
-                product = sampleProducts.random()
+                product = sampleProducts.random(),
+                modifier = Modifier.padding(horizontal = 16.dp)
             )
         }
     }
