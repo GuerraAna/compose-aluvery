@@ -10,14 +10,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.rounded.ExitToApp
 import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -40,6 +37,7 @@ import com.example.aluvery.sampleData.sampleStores
 import com.example.aluvery.ui.AluveryTheme
 import com.example.aluvery.ui.Purple700
 import com.example.aluvery.ui.components.CardProductItem
+import com.example.aluvery.ui.components.SearchTextField
 import com.example.aluvery.ui.components.section.PartnerStoresSection
 import com.example.aluvery.ui.components.section.ProductSection
 
@@ -75,25 +73,9 @@ fun HomeScreen(
                 ) {
 
                     item {
-                        OutlinedTextField(
-                            value = text,
-                            onValueChange = { newValue ->
-                                text = newValue
-                            },
-                            modifier =
-                            Modifier
-                                .padding(
-                                    start = 16.dp,
-                                    end = 16.dp
-                                )
-                                .fillMaxWidth(),
-                            shape = RoundedCornerShape(100),
-                            leadingIcon =  { Icon(
-                                imageVector = Icons.Default.Search,
-                                contentDescription = "buscar"
-                            ) },
-                            label = { Text(text = "Produto")},
-                            placeholder = { Text("O que você procura?") }
+                        SearchTextField(
+                            searchText = text,
+                            onSearchChanged = { newValue -> text = newValue }
                         )
                     }
 

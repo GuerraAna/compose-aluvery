@@ -73,10 +73,7 @@ val sampleSaltyFood: List<Product> = listOf(
     )
 )
 
-val sampleProducts =
-    sampleSaltyFood +
-    sampleCandies +
-    sampleDrinks
+val sampleProducts = sampleSaltyFood + sampleCandies + sampleDrinks
 
 val sampleStores = listOf(
     Store(
