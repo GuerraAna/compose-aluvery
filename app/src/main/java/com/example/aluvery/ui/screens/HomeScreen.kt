@@ -9,7 +9,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.rounded.ExitToApp
 import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -30,9 +32,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.aluvery.sampleData.sampleCandies
-import com.example.aluvery.sampleData.sampleDrinks
-import com.example.aluvery.sampleData.sampleProducts
+import com.example.aluvery.model.Product
+import com.example.aluvery.sampleData.sampleSections
 import com.example.aluvery.sampleData.sampleStores
 import com.example.aluvery.ui.AluveryTheme
 import com.example.aluvery.ui.Purple700
@@ -41,7 +42,9 @@ import com.example.aluvery.ui.components.section.ProductSection
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    sections: Map<String, List<Product>>
+) {
     Scaffold(
         topBar = { ScaffoldTopBar() }
     ) {
@@ -61,12 +64,34 @@ fun HomeScreen() {
                             value = text,
                             onValueChange = { newValue ->
                                 text = newValue
-                            }
+                            },
+                            modifier =
+                                Modifier
+                                    .padding(
+                                        start = 16.dp,
+                                        top = 16.dp,
+                                        end = 16.dp
+                                    )
+                                    .fillMaxWidth(),
+                            shape = RoundedCornerShape(100),
+                            leadingIcon =  { Icon(
+                                imageVector = Icons.Default.Search,
+                                contentDescription = "buscar"
+                            ) },
+                            label = { Text(text = "Produto")},
+                            placeholder = { Text("O que voc^e procura?") }
                         )
 
-                        ProductSection(title = "Principal", products = sampleProducts)
-                        ProductSection(title = "Doces", products = sampleCandies)
-                        ProductSection(title = "Bebidas", products = sampleDrinks)
+                        for (section in sections) {
+                            val title = section.key
+                            val products = section.value
+
+                            ProductSection(
+                                title = title,
+                                products = products
+                            )
+                        }
+
                         PartnerStoresSection(title = "Lojas Parceiras", stores = sampleStores)
                     }
                 }
@@ -111,7 +136,7 @@ fun ScaffoldTopBar() {
 fun HomeScreenPreview() {
     AluveryTheme {
         Surface {
-            HomeScreen()
+            HomeScreen(sections = sampleSections)
         }
     }
 }
