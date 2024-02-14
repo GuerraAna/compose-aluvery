@@ -3,8 +3,6 @@ Aluvery - App de entrega de comidas e bebidas em geral.
 🔨 Funcionalidades do projeto
 O Aluvery apresenta um catálogo de produtos variados como comidas, doces, bebidas etc
 
-![image](https://github.com/GuerraAna/compose-aluvery/assets/78937585/64e5c731-e4e3-486e-bcff-c22aeb5fc7cd)
-
 ✔️ Técnicas e tecnologias utilizadas
 Para a implementação do projeto foram utilizadas as seguintes técnicas:
 
@@ -32,3 +30,10 @@ O Android Studio deve executar algumas tasks do Gradle para configurar o projeto
 
 📚 Mais informações do curso
 Gostou do projeto e quer aprender como implementá-lo? Você pode acessar o curso de Jetpack Compose.
+
+Documentação sobre state no Jetpack Compose: [link para o documento sobre state no Jetpack compose](https://docs.google.com/document/d/1jQ1kigjXfEw7toPbOr3c0sg-Az_RirAiO9WpCnq3jIg/edit?usp=sharing)
+
+Links para as imagens do aplicativo:
+.[imagem da tela principal](https://github.com/GuerraAna/compose-aluvery/assets/78937585/ba2a6ebd-656f-4c66-880b-e01f6e08bdeb)
+.[imagem da tela principal filtrada](https://github.com/GuerraAna/compose-aluvery/assets/78937585/7e11ffde-4883-4f23-bbdd-54c227efa1d2)
+.[imagem da tela principal com o card expandido](https://github.com/GuerraAna/compose-aluvery/assets/78937585/133f4fd9-d7de-4152-a776-73fea95e2123)
