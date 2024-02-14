@@ -1,6 +1,7 @@
 package com.example.aluvery.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -10,10 +11,15 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
@@ -27,12 +33,18 @@ import java.math.BigDecimal
 @Composable
 fun CardProductItem(
     product: Product,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    expanded: Boolean = false
 ) {
+    var expandedState by remember { mutableStateOf(expanded) }
+
     Card(
         modifier = modifier
             .fillMaxWidth()
             .heightIn(150.dp)
+            .clickable {
+                expandedState = !expandedState
+            }
     ) {
         Column {
             AsyncImage(
@@ -44,6 +56,7 @@ fun CardProductItem(
                 placeholder = painterResource(id = R.drawable.ic_launcher_background),
                 contentScale = ContentScale.Crop
             )
+
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -54,10 +67,15 @@ fun CardProductItem(
                 Text(text = product.price.toBrazilianCurrency())
             }
 
+            val textOverFlow = if (expandedState) TextOverflow.Visible else TextOverflow.Ellipsis
+            val maxLines = if (expandedState) Int.MAX_VALUE else 2
+
             product.description?.let {
                 Text(
                     text = product.description,
-                    modifier = Modifier.padding(16.dp)
+                    modifier = Modifier.padding(16.dp),
+                    overflow = textOverFlow,
+                    maxLines = maxLines
                 )
             }
         }

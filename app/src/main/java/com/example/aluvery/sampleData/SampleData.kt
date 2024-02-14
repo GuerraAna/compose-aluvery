@@ -57,7 +57,7 @@ val sampleSaltyFood: List<Product> = listOf(
         name = "Lasanha de berinjela",
         price = BigDecimal("12.99"),
         image = "https://i1.wp.com/biosom.com.br/blog/wp-content/uploads/2015/06/lasanha-de-berinjela.jpg?fit=3264%2C2448&ssl=1",
-        description = LoremIpsum(10).values.first()
+        description = LoremIpsum(20).values.first()
     ),
     Product(
         name = "Pizzas",
