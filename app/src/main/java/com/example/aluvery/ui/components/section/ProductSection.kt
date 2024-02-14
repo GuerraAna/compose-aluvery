@@ -15,7 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.aluvery.model.Product
-import com.example.aluvery.sampleData.sampleProducts
+import com.example.aluvery.sampleData.sampleSaltyFood
 import com.example.aluvery.ui.AluveryTheme
 import com.example.aluvery.ui.components.ProductItem
 
@@ -56,7 +56,7 @@ fun ProductSection(
 fun ProductSectionPreview() {
     AluveryTheme {
         Surface {
-            ProductSection("Promoções", products = sampleProducts)
+            ProductSection("Promoções", products = sampleSaltyFood)
         }
     }
 }

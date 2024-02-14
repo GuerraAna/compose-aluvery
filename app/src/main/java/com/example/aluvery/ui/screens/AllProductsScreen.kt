@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.sp
 import com.example.aluvery.model.Product
 import com.example.aluvery.sampleData.sampleCandies
 import com.example.aluvery.sampleData.sampleDrinks
-import com.example.aluvery.sampleData.sampleProducts
+import com.example.aluvery.sampleData.sampleSaltyFood
 import com.example.aluvery.ui.components.ProductItem
 
 /**
@@ -43,5 +43,5 @@ fun AllProductsScreen(products: List<Product>) {
 @Preview(showBackground = true)
 @Composable
 fun AllProductsScreenPreview() {
-    AllProductsScreen(products = sampleProducts.plus(sampleDrinks).plus(sampleCandies))
+    AllProductsScreen(products = sampleSaltyFood.plus(sampleDrinks).plus(sampleCandies))
 }

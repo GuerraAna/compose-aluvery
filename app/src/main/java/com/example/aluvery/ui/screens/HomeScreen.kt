@@ -86,9 +86,12 @@ fun HomeScreen(
                     }
 
                     items(sampleProducts) { product ->
-                        CardProductItem(
-                            product = product,
-                            modifier = Modifier.padding(horizontal = 16.dp))
+                        for (p in product) {
+                            CardProductItem(
+                                product = p,
+                                modifier = Modifier.padding(horizontal = 16.dp, vertical = 16.dp)
+                            )
+                        }
                     }
 
                     item {

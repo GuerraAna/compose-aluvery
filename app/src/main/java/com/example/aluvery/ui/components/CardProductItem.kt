@@ -15,13 +15,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.aluvery.R
 import com.example.aluvery.extensions.toBrazilianCurrency
 import com.example.aluvery.model.Product
-import com.example.aluvery.sampleData.sampleProducts
 import com.example.aluvery.ui.AluveryTheme
+import java.math.BigDecimal
 
 @Composable
 fun CardProductItem(
@@ -53,12 +54,12 @@ fun CardProductItem(
                 Text(text = product.price.toBrazilianCurrency())
             }
 
-            // TODO: adicionar descrição do produto
-            // Text(
-            //     text = product.description,
-            //     Modifier
-            //         .padding(16.dp)
-            // )
+            product.description?.let {
+                Text(
+                    text = product.description,
+                    modifier = Modifier.padding(16.dp)
+                )
+            }
         }
     }
 }
@@ -69,7 +70,24 @@ private fun CardProductItemPreview() {
     AluveryTheme {
         Surface {
             CardProductItem(
-                product = sampleProducts.random(),
+                product = Product(name = "teste", price = BigDecimal(99)),
+                modifier = Modifier.padding(horizontal = 16.dp)
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun CardProductItemWithDescriptionPreview() {
+    AluveryTheme {
+        Surface {
+            CardProductItem(
+                product = Product(
+                    name = "teste com descrição",
+                    price = BigDecimal(99),
+                    description = LoremIpsum(10).values.first()
+                ),
                 modifier = Modifier.padding(horizontal = 16.dp)
             )
         }
