@@ -17,6 +17,9 @@ import com.example.aluvery.sampleData.sampleDrinks
 import com.example.aluvery.sampleData.sampleProducts
 import com.example.aluvery.ui.components.ProductItem
 
+/**
+ * TODO: This screen is in analysing step.
+ */
 @Composable
 fun AllProductsScreen(products: List<Product>) {
     LazyVerticalGrid(
