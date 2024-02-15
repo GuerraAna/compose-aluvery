@@ -1,4 +1,4 @@
-package com.example.aluvery
+package com.example.aluvery.ui.activities
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -14,23 +14,28 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContent { App() }
+        setContent {
+            AluveryTheme {
+                Surface {
+                    App()
+                }
+            }
+        }
     }
 }
 
 @Composable
 fun App() {
-    AluveryTheme {
-        Surface {
-//            AllProductsScreen(products = sampleProducts.plus(sampleDrinks).plus(sampleCandies))
-            HomeScreen(sections = sampleSections)
-
-        }
-    }
+    HomeScreen(sections = sampleSections)
+//  AllProductsScreen(products = sampleProducts.plus(sampleDrinks).plus(sampleCandies))
 }
 
 @Preview
 @Composable
 fun AppPreview() {
-    App()
+    AluveryTheme {
+        Surface {
+            App()
+        }
+    }
 }
