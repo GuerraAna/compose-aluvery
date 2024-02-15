@@ -17,6 +17,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -31,6 +32,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -40,6 +42,7 @@ import com.example.aluvery.R
 import com.example.aluvery.model.Product
 import com.example.aluvery.ui.AluveryTheme
 import java.math.BigDecimal
+import java.text.DecimalFormat
 
 class ProductFormActivity : ComponentActivity() {
 
@@ -103,22 +106,44 @@ fun ProductFormScreen() {
                 modifier = Modifier.fillMaxWidth(),
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Text,
-                    imeAction = ImeAction.Next
+                    imeAction = ImeAction.Next,
+                    capitalization = KeyboardCapitalization.Words
                 ),
                 label = { Text(text = "nome do produto") }
             )
 
             var price by remember { mutableStateOf("") }
+            var isPriceError by remember { mutableStateOf(false) }
+            val formatter = remember { DecimalFormat("0.00") }
+
             TextField(
                 value = price,
-                onValueChange = { price = it },
+                onValueChange = {
+                    isPriceError = try {
+                        BigDecimal(it)
+                        false
+                    } catch (error: IllegalAccessException) {
+                        it.isEmpty()
+                    }
+                    price = formatter.format(BigDecimal(it))
+                                },
                 modifier = Modifier.fillMaxWidth(),
+                isError = isPriceError,
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Decimal,
                     imeAction = ImeAction.Next
                 ),
                 label = { Text(text = "preço do produto") }
             )
+
+            if (isPriceError) {
+                Text(
+                    text = "Preço deve ser um número decimal",
+                    color = MaterialTheme.colorScheme.error,
+                    style = MaterialTheme.typography.displaySmall,
+                    modifier = Modifier.padding(start = 16.dp)
+                )
+            }
 
             var description by remember { mutableStateOf("") }
             TextField(
@@ -128,7 +153,8 @@ fun ProductFormScreen() {
                     .fillMaxWidth()
                     .height(100.dp),
                 keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Text
+                    keyboardType = KeyboardType.Text,
+                    capitalization = KeyboardCapitalization.Sentences
                 ),
                 label = { Text(text = "descrição do produto") }
             )
